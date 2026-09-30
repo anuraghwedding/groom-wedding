@@ -1,5 +1,3 @@
-
-
 (function () {
 
     function initializeWelcome() {
@@ -15,11 +13,6 @@
         }
 
         welcome.dataset.initialized = "true";
-
-
-        /* =====================================================
-           ELEMENTS
-           ===================================================== */
 
         const diyaHolder =
             document.getElementById("diyaHolder");
@@ -39,16 +32,10 @@
         const diyaClickHint =
             document.getElementById("diyaClickHint");
 
-
         if (!diyaHolder) {
             console.error("Diya element not found.");
             return;
         }
-
-
-        /* =====================================================
-           DIYA PARTICLES
-           ===================================================== */
 
         function createDiyaParticles() {
 
@@ -100,11 +87,6 @@
             }
         }
 
-
-        /* =====================================================
-           GRAND SCENE PARTICLES
-           ===================================================== */
-
         function createGrandParticles() {
 
             if (!grandParticles) {
@@ -149,17 +131,7 @@
             }
         }
 
-
-        /* =====================================================
-           INITIALIZE
-           ===================================================== */
-
         createDiyaParticles();
-
-
-        /* =====================================================
-           LIGHT DIYA
-           ===================================================== */
 
         let diyaLit = false;
 
@@ -176,9 +148,6 @@
 
             createDiyaParticles();
 
-            // Belt-and-braces: don't just rely on the CSS class fading
-            // the hint out — actually remove it from layout so it can
-            // never sit underneath the revealed invitation text.
             if (diyaClickHint) {
 
                 diyaClickHint.setAttribute("aria-hidden", "true");
@@ -203,11 +172,6 @@
             }, 1400);
         }
 
-
-        /* =====================================================
-           DIYA CLICK
-           ===================================================== */
-
         diyaHolder.addEventListener(
             "click",
             function (event) {
@@ -218,11 +182,6 @@
                 lightDiya();
             }
         );
-
-
-        /* =====================================================
-           TOUCH
-           ===================================================== */
 
         diyaHolder.addEventListener(
             "touchend",
@@ -237,11 +196,6 @@
                 passive: false
             }
         );
-
-
-        /* =====================================================
-           KEYBOARD
-           ===================================================== */
 
         diyaHolder.addEventListener(
             "keydown",
@@ -259,17 +213,10 @@
             }
         );
 
-
-        /* =====================================================
-           ENTER OUR STORY
-           ===================================================== */
-
         if (enterButton) {
             enterButton.addEventListener("click", function (e) {
                 e.preventDefault();
 
-                // Swap the opening out for the main site immediately,
-                // no scrolling required.
                 if (typeof window.loadHome === "function") {
                     window.loadHome();
                 }
@@ -278,18 +225,8 @@
 
     }
 
-
-    /* =========================================================
-       GLOBAL FUNCTION
-       ========================================================= */
-
     window.initializeWelcome =
         initializeWelcome;
-
-
-    /* =========================================================
-       DYNAMIC PAGE SUPPORT
-       ========================================================= */
 
     function checkWelcome() {
 
@@ -300,7 +237,6 @@
             window.initializeWelcome();
         }
     }
-
 
     if (document.readyState === "loading") {
 
@@ -313,11 +249,6 @@
 
         checkWelcome();
     }
-
-
-    /* =========================================================
-       OBSERVE DYNAMIC HTML
-       ========================================================= */
 
     const observer =
         new MutationObserver(function () {
